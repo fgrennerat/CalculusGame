@@ -1,0 +1,31 @@
+
+plugins {
+    id 'application'
+    id 'org.beryx.jlink' version '2.23.6'
+    id 'idea'
+    id 'com.dua3.javafxgradle7plugin' version '0.0.9'
+}
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+
+}
+
+javafx {
+    version = '16'
+    modules = ['javafx.controls', 'javafx.swing', 'javafx.fxml']
+}
+
+version = "0.0.1"
+description = "Game..."
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+mainClassName = "fr.fgrennerat.calculusgame.Main"
+
+application {
+    mainModule.set('fr.fgrennerat.calculusgame')
+    mainClass.set('fr.fgrennerat.calculusgame.Main')
+}
