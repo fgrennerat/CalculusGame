@@ -21,6 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main extends Application {
 
+
+
     @Override
     public void start(Stage stage) {
 
@@ -28,13 +30,14 @@ public class Main extends Application {
         Scene scene = new Scene(tilePane, 1600, 450);
         stage.setTitle("Wonder Game");
         stage.setScene(scene);
-
+        // génération d'un entier >= 0 et < ***
+        int nAlea = (int) (Math.random() * 500);
         //Creation de boutons
         ArrayList<Button> listeBoutons = new ArrayList<>();
         final int[] product = {1};
-        for (int i = 1; i < 30; i++) {
+        for (int i = 2; i < 91; i++) {
             Button button = new Button(String.valueOf(i));
-            button.setPrefSize(40, 20);
+            button.setPrefSize(100, 20);
             listeBoutons.add(button);
             // action event
             final int finalI = i;
@@ -43,6 +46,14 @@ public class Main extends Application {
                     product[0] *= finalI;
                     button.setText(String.valueOf(product[0]));
                     button.setTextFill(Color.INDIANRED);
+                    if (product[0] == nAlea) {
+                        Text zoneReponse = new Text("Bravo !! ");
+                        tilePane.getChildren().add(zoneReponse);
+                    }
+                    if (product[0] > nAlea) {
+                        Text zoneReponse = new Text("Non :-( ");
+                        tilePane.getChildren().add(zoneReponse);
+                    }
                     //button.setStyle();
                 }
             };
@@ -61,15 +72,16 @@ public class Main extends Application {
         //Retrieving the observable list of the Tile Pane
         tilePane.getChildren().addAll(listeBoutons);
 
+
         //Creation d'un cadre texte
-        Text zoneTextuelle = new Text("Click on numbers to obtain the product 45 ");
+        Text zoneTextuelle = new Text(new StringBuilder().append("Click on numbers to obtain the product ").append(nAlea).toString());
         //zoneTextuelle.setWrappingWidth(400);
         tilePane.getChildren().add(zoneTextuelle);
         //zoneTextuelle.getChildren().add("asdfadsf")
 
         //Setting the stage
         //Scene scene = new Scene(root, 595, 200, Color.BEIGE);
-        
+
         
         ///////
         stage.show();
